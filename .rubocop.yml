@@ -1,0 +1,284 @@
+require:
+  - rubocop-rspec
+  - rubocop-rails
+
+# Exclude auto-generated files
+AllCops:
+  TargetRubyVersion: 3.1
+  SuggestExtensions: false
+  NewCops: enable
+  Exclude:
+    - config.ru
+    - db/**/*
+    - config/**/*
+    - script/**/*
+    - bin/*
+    # CI installs gems here and we don't want to check gems
+    - vendor/bundle/**/*
+    - node_modules/**/*
+
+# Emacs nicely aligns trailing comments, keep them
+Layout/ExtraSpacing:
+  AllowBeforeTrailingComments: true
+  AllowForAlignment: true
+
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented_relative_to_receiver
+
+# Braces for multiline blocks are sometimes ok
+Style/BlockDelimiters:
+  EnforcedStyle: braces_for_chaining
+
+# No metrics for now
+Metrics:
+  Enabled: false
+
+# The motivation behind the predicates is weak, and the result code is vague
+Style/NumericPredicate:
+  EnforcedStyle: comparison
+
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: consistent_comma
+
+# Github does it, why can't we do
+Layout/LineLength:
+  Max: 120
+
+# TODO: reenable at the end
+Lint/RedundantCopDisableDirective:
+  Enabled: false
+
+# Stop holy wars
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+# We don't write documentation in the code for projects
+Style/Documentation:
+  Enabled: false
+
+# Don't care
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+# Tables are much easier to read
+Layout/HashAlignment:
+  EnforcedHashRocketStyle: table
+  EnforcedColonStyle:      table
+
+# It's typical for rspec to use lines like
+#   expect { subject }.to change { foo }
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - spec/**/*
+
+# This one is generally weird
+Style/MultilineBlockChain:
+  Enabled: false
+
+# Useful in controllers with dry-monads
+Lint/NonLocalExitFromIterator:
+  Enabled: false
+
+# Doesn't work well with sorbet signatures for attr_*
+Style/AccessorGrouping:
+  Enabled: false
+
+# This doesn't always make sense
+Lint/MissingSuper:
+  Enabled: false
+
+# Same looking loops may have completely different meaning
+Style/CombinableLoops:
+  Enabled: false
+
+# I'll pick my own, thank you very much
+Naming/HeredocDelimiterNaming:
+  Enabled: false
+
+# The default `e` doesn't play nice with Sorbet in the cases when the variable must be explicitly declared
+Naming/RescuedExceptionsVariableName:
+  Enabled: false
+
+# Parens! Parens!
+Style/TernaryParentheses:
+  EnforcedStyle: require_parentheses_when_complex
+
+# Who didn't learn math in school?
+Lint/AmbiguousOperatorPrecedence:
+  Enabled: false
+
+####################
+# Project-specific #
+####################
+Style/SymbolArray:
+  Enabled: false
+
+# Breaks sunspot-related methods in models. See https://github.com/rubocop/rubocop/issues/6540 for details
+Style/SymbolProc:
+  Exclude:
+    - app/models/**
+
+Style/WordArray:
+  Enabled: false
+
+# TODO: fix the code and remove this
+Lint/UriEscapeUnescape:
+  Enabled: false
+
+# This won't work fine with Sorbet, so remove it later
+Lint/ConstantDefinitionInBlock:
+  Enabled: false
+
+RSpec/EmptyLineAfterHook:
+  # our version of rubocop-rspec doesn't support it yet, so disabling the check. Enable after an update
+  # AllowConsecutiveOneLiners: true
+  Enabled: false
+
+RSpec/DescribedClass:
+  Enabled: false
+
+RSpec/NestedGroups:
+  Enabled: false
+
+RSpec/ContextWording:
+  Enabled: false
+
+RSpec/AnyInstance:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/ExampleLength:
+  # TODO: set proper max lines instead
+  Enabled: false
+
+RSpec/MessageSpies:
+  # TODO: set this instead
+  # EnforcedStyle: receive
+  Enabled: false
+
+# This should be fixed, but it's just too much work ATM
+RSpec/NamedSubject:
+  Enabled: false
+
+# Generally weird, investigate
+RSpec/RepeatedExampleGroupDescription:
+  Enabled: false
+
+RSpec/MultipleMemoizedHelpers:
+  Enabled: false
+
+# That's fine
+RSpec/MessageChain:
+  Enabled: false
+
+RSpec/VerifiedDoubles:
+  Enabled: false
+
+# Numeric codes are waaaaaaaaaay better
+RSpec/Rails/HttpStatus:
+  EnforcedStyle: numeric
+  Enabled: false
+
+# Makes no sense
+RSpec/PendingWithoutReason:
+  Enabled: false
+
+# Generally that's reasonable, but we have too much code with it
+RSpec/IndexedLet:
+  Enabled: false
+
+FactoryBot/FactoryAssociationWithStrategy:
+  Enabled: false
+
+# Defaults are "is" and "has", but "has" usually has different meaning. Keeping only "is"
+Naming/PredicateName:
+  ForbiddenPrefixes:
+    - is_
+
+###############################
+# TODO: investigate all below #
+###############################
+Style/MissingRespondToMissing:
+  Enabled: false
+
+Style/FormatString:
+  Enabled: false
+
+Style/FormatStringToken:
+  Enabled: false
+
+Style/StringConcatenation:
+  Enabled: false
+
+Naming/VariableNumber:
+  Enabled: false
+
+Style/AccessModifierDeclarations:
+  Enabled: false
+
+Naming/AccessorMethodName:
+  Enabled: false
+
+Rails/HttpStatus:
+  Enabled: false
+
+Rails/I18nLocaleTexts:
+  Enabled: false
+
+# TODO: implement
+Rails/RedundantForeignKey:
+  Enabled: false
+
+# TODO: implement
+Rails/UniqueValidationWithoutIndex:
+  Enabled: false
+
+# Not all take tasks need to load the complete project
+Rails/RakeEnvironment:
+  Enabled: false
+
+# controversial
+Rails/Blank:
+  Enabled: false
+
+# useless
+Rails/CompactBlank:
+  Enabled: false
+
+# TODO: implement
+# Offense count: 48
+# This cop supports unsafe autocorrection (--autocorrect-all).
+# Configuration parameters: EnforcedStyle, AllowToTime.
+# SupportedStyles: strict, flexible
+Rails/Date:
+  Enabled: false
+
+# dumb
+Rails/HasAndBelongsToMany:
+  Enabled: false
+
+# TODO: implement, but it can take a while
+Rails/HasManyOrHasOneDependent:
+  Enabled: false
+
+# Don't like it
+Rails/Pluck:
+  Enabled: false
+
+# TODO: enable
+Rails/TimeZone:
+  Enabled: false
+
+# TODO: would be good to fix, but not too important
+Rails/OutputSafety:
+  Enabled: false
+
+# Nonsense
+Rails/SkipsModelValidations:
+  Enabled: false
+
+# Doesn't work with Sorbet
+Naming/BlockForwarding:
+  Enabled: false
