@@ -1,20 +1,10 @@
-<% if flash[:success]%>
-  <div class="alert alert-success" role="alert">
-    <%= flash[:success] %>
-  </div>
-<%end%>
-<% if flash[:notice]%>
-  <div class="alert alert-info" role="alert">
-    <%= flash[:notice] %>
-  </div>
-<%end%>
-<% if flash[:alert]%>
-  <div class="alert alert-danger" role="alert">
-    <%= flash[:alert]  %>
-  </div>
-<%end%>
-<% if flash[:session]%>
-  <div class="alert alert-success" role="alert">
-    <%= flash[:session]  %>
-  </div>
-<%end%>
+<div class = "mx-auto">
+  <% if flash[:notice] %>
+    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg" id="notice"><%= flash[:notice] %></p>
+  <% end %>
+
+  <% if flash[:alert] %>
+    <p class="py-2 px-3 bg-red-50 mb-5 text-red-500 font-medium rounded-lg" id="alert"><%= flash[:alert] %></p>
+  <% end %>
+</div>
+  

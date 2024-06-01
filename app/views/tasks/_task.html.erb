@@ -1,27 +1,27 @@
-<div id="<%= dom_id task %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Name:</strong>
-    <%= task.name %>
-  </p>
+<div id="<%= dom_id task %>", class="mt-5">
+  <div class="flex justify-between items-center">
+    <div class="flex">
+      <div class="flex flex-col items-center justify-center rounded-full w-16 h-16 bg-green-200">
+        <div>
+          <%= task.points %>
+        </div>
+        <div class="text-sm">
+          <%= task.points > 1 ? "points" : "point" %>
+        </div>
+      </div>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">User:</strong>
-    <%= task.user_id %>
-  </p>
+      <div class="my-5 ml-10 text-lg font-semibold text-gray-900">
+        <%= task.name %>
+      </div>
+    </div>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Points:</strong>
-    <%= task.points %>
-  </p>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Repeatable:</strong>
-    <%= task.repeatable %>
-  </p>
+    <div class="flex">
+      <%= link_to "Commit", "#", class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium ml-2" %>
+      <%= link_to "Edit", edit_task_path(task), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+      <%= button_to "Delete", task_path(task), method: :delete, class: "rounded-lg py-3 px-5 ml-2 bg-gray-100 inline-block font-medium" %>
+    </div>
+  </div>
 
-  <% if action_name != "show" %>
-    <%= link_to "Show this task", task, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to "Edit this task", edit_task_path(task), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6">
-  <% end %>
+  <hr class="mt-6">
 </div>

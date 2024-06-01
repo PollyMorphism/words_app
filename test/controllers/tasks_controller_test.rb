@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "test_helper"
 
 class TasksControllerTest < ActionDispatch::IntegrationTest
@@ -17,7 +19,9 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
 
   test "should create task" do
     assert_difference("Task.count") do
-      post tasks_url, params: { task: { name: @task.name, points: @task.points, repeatable: @task.repeatable, user_id: @task.user_id } }
+      post tasks_url,
+           params: { task: { name: @task.name, points: @task.points, repeatable: @task.repeatable,
+user_id: @task.user_id, } }
     end
 
     assert_redirected_to task_url(Task.last)
@@ -34,7 +38,9 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update task" do
-    patch task_url(@task), params: { task: { name: @task.name, points: @task.points, repeatable: @task.repeatable, user_id: @task.user_id } }
+    patch task_url(@task),
+          params: { task: { name: @task.name, points: @task.points, repeatable: @task.repeatable,
+user_id: @task.user_id, } }
     assert_redirected_to task_url(@task)
   end
 
