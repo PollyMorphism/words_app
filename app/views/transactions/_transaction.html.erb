@@ -1,0 +1,15 @@
+<div id="<%= dom_id transaction %>", class="mt-2">
+  <div class="flex">
+    <div class="mr-5">
+      <%= formatted_date(transaction) %>
+    </div>
+    <div class="mr-2">
+      <%= points_description(transaction) %>
+    </div>
+    <div>
+      "<%= transaction.transactable.name %>"
+    </div>
+  </div>
+
+  <hr class="mt-3">
+</div>

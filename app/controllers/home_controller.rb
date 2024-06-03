@@ -5,5 +5,7 @@ class HomeController < ApplicationController
 
   def index
     @profile = current_user.profile
+    @tasks = current_user.recent_tasks
+    @rewards = current_user.recent_rewards
   end
 end

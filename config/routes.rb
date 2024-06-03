@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   resource :profile, only: :show
   resources :commits, only: :create
   resources :prizes, only: :create
+  resources :transactions, only: :index
 end
