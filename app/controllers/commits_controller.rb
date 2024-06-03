@@ -4,8 +4,8 @@ class CommitsController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    CommitService.call(params[:id])
+    result = CommitService.call(params[:id])
 
-    redirect_to tasks_path, notice: "Task has been completed!"
+    redirect_to tasks_path, notice: "Good job. You've got #{result}!"
   end
 end

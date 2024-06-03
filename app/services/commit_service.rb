@@ -14,5 +14,13 @@ class CommitService < ApplicationService
       profile.update!(points: profile.points + task.points)
       task.destroy! unless task.repeatable?
     end
+
+    result_description
+  end
+
+  private
+
+  def result_description
+    "#{task.points} #{(task.points > 1) ? 'points' : 'point'}"
   end
 end
