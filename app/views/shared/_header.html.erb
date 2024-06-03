@@ -4,9 +4,12 @@
       <%= link_to "TasksToPoints", root_path, class: "text-lg font-semibold text-gray-900 mr-5"  %>
       <%= link_to "Dashboard", root_path, class: "text-gray-600 hover:text-gray-900"  %>
       <%= link_to "Tasks", tasks_path, class: "text-gray-600 hover:text-gray-900"  %>
-      <%= link_to "Rewards", "#", class: "text-gray-600 hover:text-gray-900"  %>
+      <%= link_to "Rewards", rewards_path, class: "text-gray-600 hover:text-gray-900"  %>
     </div>
     <div class="flex items-center space-x-4">
+      <div class="text-gray-600 hover:text-gray-900 mr-5">
+        Points: <%= current_user.profile.points%>
+      </div>
       <%= link_to "Profile", profile_path, class: "text-gray-600 hover:text-gray-900"  %>
       <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "text-gray-600 hover:text-gray-900"  %>
     </div>

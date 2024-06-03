@@ -1,0 +1,27 @@
+<div id="<%= dom_id reward %>", class="mt-5">
+  <div class="flex justify-between items-center">
+    <div class="flex">
+      <div class="flex flex-col items-center justify-center rounded-full w-16 h-16 bg-green-200">
+        <div>
+          <%= reward.points %>
+        </div>
+        <div class="text-sm">
+          <%= reward.points > 1 ? "points" : "point" %>
+        </div>
+      </div>
+
+      <div class="my-5 ml-10 text-lg font-semibold text-gray-900">
+        <%= reward.name %>
+      </div>
+    </div>
+
+
+    <div class="flex">
+      <%= button_to "Get", prizes_path(id: reward.id), method: :post, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium ml-2" %>
+      <%= link_to "Edit", edit_reward_path(reward), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+      <%= button_to "Delete", reward_path(reward), method: :delete, class: "rounded-lg py-3 px-5 ml-2 bg-gray-100 inline-block font-medium" %>
+    </div>
+  </div>
+
+  <hr class="mt-6">
+</div>

@@ -4,3 +4,9 @@ en:
     update: "Task was successfully updated."
     delete: "Task was successfully destroyed."
     commit: "You have completed the task. Good job!"
+  rewards:
+    create: "Reward was successfully created."
+    update: "Reward was successfully updated."
+    delete: "Reward was successfully destroyed."
+    get: "Enjoy your reward!"
+    no_points: "You don't have enough points to get this reward!"
