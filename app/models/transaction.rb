@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Transaction < ApplicationRecord
-  enum :activity, [ :get, :spend ]
+  enum :activity, [:get, :spend]
 
   belongs_to :user
   belongs_to :transactable, polymorphic: true
