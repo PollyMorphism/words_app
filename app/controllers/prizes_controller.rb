@@ -6,8 +6,8 @@ class PrizesController < ApplicationController
   def create
     PrizeService.call(params[:id])
 
-    redirect_to rewards_path, notice: t("rewards.get")
+    redirect_back fallback_location: rewards_path, notice: t("rewards.get")
   rescue ActiveRecord::RecordInvalid
-    redirect_to rewards_path, alert: t("rewards.no_points")
+    redirect_back fallback_location: rewards_path, alert: t("rewards.no_points")
   end
 end

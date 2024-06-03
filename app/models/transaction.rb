@@ -9,4 +9,5 @@ class Transaction < ApplicationRecord
   validates :points, presence: true, numericality: { greater_than_or_equal_to: 0 }
 
   scope :latest, -> { order(created_at: :desc).limit(5) }
+  scope :history, -> { includes(:transactable).limit(100).order(created_at: :desc) }
 end

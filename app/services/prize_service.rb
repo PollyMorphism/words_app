@@ -13,7 +13,7 @@ class PrizeService < ApplicationService
     Profile.transaction do
       user.transactions.create!(activity: :spend, transactable: reward, points: reward.points)
 
-      profile.decrement!(:points, reward.points)
+      profile.update!(points: profile.points - reward.points)
       reward.destroy! unless reward.repeatable?
     end
   end

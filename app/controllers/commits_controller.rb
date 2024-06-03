@@ -6,6 +6,6 @@ class CommitsController < ApplicationController
   def create
     CommitService.call(params[:id])
 
-    redirect_to tasks_path, notice: t("tasks.commit")
+    redirect_back fallback_location: tasks_path, notice: t("tasks.commit")
   end
 end

@@ -13,7 +13,7 @@ class CommitService < ApplicationService
     Profile.transaction do
       user.transactions.create!(activity: :get, transactable: task, points: task.points)
 
-      profile.increment!(:points, task.points)
+      profile.update!(points: profile.points + task.points)
       task.destroy! unless task.repeatable?
     end
   end

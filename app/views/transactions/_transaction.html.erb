@@ -7,7 +7,7 @@
       <%= points_description(transaction) %>
     </div>
     <div>
-      "<%= transaction.transactable.name %>"
+      "<%= transaction.transactable&.name || "DELETED" %>"
     </div>
   </div>
 
