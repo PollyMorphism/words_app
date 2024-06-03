@@ -5,5 +5,5 @@ class Task < ApplicationRecord
 
   validates :name, presence: true, length: { in: 3..100 }
   validates :points, presence: true, numericality: { greater_than_or_equal_to: 0 }
-  validates :repeatable, presence: true
+  validates :repeatable, inclusion: { in: [true, false] }
 end
