@@ -6,6 +6,6 @@ class CommitsController < ApplicationController
   def create
     result = CommitService.call(params[:id])
 
-    redirect_to tasks_path, notice: "Good job. You've got #{result}!"
+    redirect_to tasks_path, notice: t("tasks.commit")
   end
 end
