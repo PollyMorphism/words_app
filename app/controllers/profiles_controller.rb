@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-class HomeController < ApplicationController
+class ProfilesController < ApplicationController
   before_action :authenticate_user!
 
-  def index
+  def show
     @profile = current_user.profile
   end
 end
