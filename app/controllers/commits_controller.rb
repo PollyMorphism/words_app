@@ -4,8 +4,12 @@ class CommitsController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    CommitService.call(params[:id])
+    result = CommitService.call(params[:id])
 
-    redirect_back fallback_location: tasks_path, notice: t("tasks.commit")
+    if result.success?
+      redirect_back fallback_location: tasks_path, notice: t("tasks.commit")
+    else
+      redirect_back fallback_location: tasks_path, alert: result.error
+    end
   end
 end
