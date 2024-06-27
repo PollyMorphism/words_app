@@ -1,0 +1,20 @@
+<div id="<%= dom_id card %>", class="mt-5">
+  <div class="flex justify-between items-center">
+    <div class="flex">
+      <div class="my-5 ml-10 text-lg font-semibold text-gray-900">
+        <%= card.front %>
+      </div>
+
+      <div class="my-5 ml-10 text-lg font-semibold text-gray-900">
+        <%= card.back %>
+      </div>
+    </div>
+
+    <div class="flex">
+      <%= link_to "Edit", edit_card_path(card), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+      <%= button_to "Delete", card_path(card), method: :delete, class: "rounded-lg py-3 px-5 ml-2 bg-gray-100 inline-block font-medium" %>
+    </div>
+  </div>
+
+  <hr class="mt-6">
+</div>

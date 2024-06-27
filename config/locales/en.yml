@@ -1,12 +1,9 @@
 en:
-  tasks:
-    create: "Task was successfully created."
-    update: "Task was successfully updated."
-    delete: "Task was successfully destroyed."
-    commit: "You have completed the task. Good job!"
-  rewards:
-    create: "Reward was successfully created."
-    update: "Reward was successfully updated."
-    delete: "Reward was successfully destroyed."
-    get: "Enjoy your reward!"
-    no_points: "You don't have enough points to get this reward!"
+  decks:
+    create: "Deck was successfully created."
+    update: "Deck was successfully updated."
+    delete: "Deck was successfully destroyed."
+  cards:
+    create: "Card was successfully created."
+    update: "Card was successfully updated."
+    delete: "Card was successfully destroyed."

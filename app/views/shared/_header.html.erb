@@ -1,16 +1,12 @@
 <header class="bg-white border-b border-gray-200 mb-10">
   <div class="container mx-auto px-4 py-4 flex justify-between items-center">
     <div class="flex items-center space-x-4">
-      <%= link_to "TasksToPoints", root_path, class: "text-lg font-semibold text-gray-900 mr-5"  %>
+      <%= link_to "Words App", root_path, class: "text-lg font-semibold text-gray-900 mr-5"  %>
       <%= link_to "Dashboard", root_path, class: "text-gray-600 hover:text-gray-900"  %>
-      <%= link_to "Tasks", tasks_path, class: "text-gray-600 hover:text-gray-900"  %>
-      <%= link_to "Rewards", rewards_path, class: "text-gray-600 hover:text-gray-900"  %>
-      <%= link_to "History", transactions_path, class: "text-gray-600 hover:text-gray-900"  %>
+      <%= link_to "Decks", decks_path, class: "text-gray-600 hover:text-gray-900"  %>
+      <%= link_to "Cards", cards_path, class: "text-gray-600 hover:text-gray-900"  %>
     </div>
     <div class="flex items-center space-x-4">
-      <div class="text-gray-600 hover:text-gray-900 mr-5">
-        Points: <%= current_user.profile.points%>
-      </div>
       <%= link_to "Profile", profile_path, class: "text-gray-600 hover:text-gray-900"  %>
       <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "text-gray-600 hover:text-gray-900"  %>
     </div>

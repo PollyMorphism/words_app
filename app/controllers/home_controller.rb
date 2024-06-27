@@ -4,8 +4,6 @@ class HomeController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @profile = current_user.profile
-    @tasks = current_user.recent_tasks
-    @rewards = current_user.recent_rewards
+    @decks = current_user.decks
   end
 end

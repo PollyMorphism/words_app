@@ -14,45 +14,30 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_05_151016) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "cards", force: :cascade do |t|
+    t.string "front"
+    t.string "back"
+    t.bigint "user_id", null: false
+    t.bigint "deck_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["deck_id"], name: "index_cards_on_deck_id"
+    t.index ["user_id"], name: "index_cards_on_user_id"
+  end
+
+  create_table "decks", force: :cascade do |t|
+    t.string "name"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_decks_on_user_id"
+  end
+
   create_table "profiles", force: :cascade do |t|
-    t.integer "points", default: 0
-    t.integer "money", default: 0
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_profiles_on_user_id"
-  end
-
-  create_table "rewards", force: :cascade do |t|
-    t.string "name"
-    t.bigint "user_id", null: false
-    t.integer "points", default: 10, null: false
-    t.boolean "repeatable", default: true
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_rewards_on_user_id"
-  end
-
-  create_table "tasks", force: :cascade do |t|
-    t.string "name"
-    t.bigint "user_id", null: false
-    t.integer "points", default: 1, null: false
-    t.boolean "repeatable", default: true
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_tasks_on_user_id"
-  end
-
-  create_table "transactions", force: :cascade do |t|
-    t.integer "activity", null: false
-    t.integer "points", null: false
-    t.bigint "user_id", null: false
-    t.string "transactable_type", null: false
-    t.bigint "transactable_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["transactable_type", "transactable_id"], name: "index_transactions_on_transactable"
-    t.index ["user_id"], name: "index_transactions_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -67,8 +52,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_05_151016) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "cards", "decks"
+  add_foreign_key "cards", "users"
+  add_foreign_key "decks", "users"
   add_foreign_key "profiles", "users"
-  add_foreign_key "rewards", "users"
-  add_foreign_key "tasks", "users"
-  add_foreign_key "transactions", "users"
 end
