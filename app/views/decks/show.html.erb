@@ -14,7 +14,17 @@
     </div>
   </div>
 
-  <%= render @decks%>
+  <% if @decks.any? %>
+    <div id="decks" class="mt-10">
+      <h3 class="text-lg font-semibold mb-3"> Nested Decks:</h3>
+      <%= render @decks%>
+    </div>
+  <% end %>
 
-  <%= render "cards/card_list" %>
+  <% if @cards.any? %>
+    <div id="cards" class="mt-10">
+      <h3 class="text-lg font-semibold mb-3"> Cards:</h3>
+      <%= render @cards%>
+    </div>
+  <% end%>
 </div>

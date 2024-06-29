@@ -1,0 +1,14 @@
+<div id="<%= dom_id(card) %>">
+  <div class="flex justify-between items-center">
+    <div class="my-2 ml-10"> <%= card.front %> </div>
+    <div> <%= card.back %> </div>
+
+    <div class="flex">
+      <%= link_to "Edit", edit_card_path(card), class: "py-3 ml-2 px-5 text-blue-600 hover:text-blue-800 font-medium" %>
+      <%= button_to "Delete", card_path(card), method: :delete, class: "py-3 px-5 ml-2 text-red-600 hover:text-red-800 font-medium border-none bg-transparent", form: { class: "inline-block" } %>
+    </div>
+  </div>
+
+  <hr>
+</div>
+

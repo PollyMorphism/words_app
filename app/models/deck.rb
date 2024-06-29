@@ -2,7 +2,7 @@
 
 class Deck < ApplicationRecord
   has_closure_tree
-  
+
   belongs_to :user
   has_many :cards, dependent: :destroy
 
