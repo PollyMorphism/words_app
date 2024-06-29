@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  root "home#index"
+  root "decks#index"
 
   resources :decks
   resources :cards, except: :show

@@ -11,6 +11,7 @@ class DecksController < ApplicationController
   def show
     @cards = @deck.cards
     @decks = @deck.children
+    @path  = @deck.breadcrumbs
   end
 
   def new
@@ -24,7 +25,7 @@ class DecksController < ApplicationController
 
     respond_to do |format|
       if @deck.save
-        format.html { redirect_to decks_url, notice: t("decks.create") }
+        format.html { redirect_to deck_path(@deck), notice: t("decks.create") }
         format.json { render :show, status: :created, location: @deck }
       else
         format.html { render :new, status: :unprocessable_entity }

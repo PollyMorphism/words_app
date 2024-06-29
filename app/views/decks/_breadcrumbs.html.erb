@@ -1,0 +1,9 @@
+<div class="mb-3">
+  <%= link_to "Decks", decks_path, class: "text-blue-600 hover:text-blue-800" %>
+  >
+  <% path.each do |parent|%>
+    <%= link_to parent.name, deck_path(parent), class: "text-blue-600 hover:text-blue-800" %>
+    >
+  <% end%>
+  <%= deck.name %>
+</div>
