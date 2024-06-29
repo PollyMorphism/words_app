@@ -8,12 +8,12 @@ class DecksController < ApplicationController
     @decks = current_user.decks
   end
 
-  def new
-    @deck = Deck.new
-  end
-
   def show
     @cards = @deck.cards
+  end
+
+  def new
+    @deck = Deck.new
   end
 
   def edit; end

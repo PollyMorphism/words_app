@@ -4,7 +4,7 @@ require:
 
 # Exclude auto-generated files
 AllCops:
-  TargetRubyVersion: 3.1.2
+  TargetRubyVersion: 3.3.2
   SuggestExtensions: false
   NewCops: enable
   Exclude:
@@ -187,9 +187,6 @@ RSpec/PendingWithoutReason:
 
 # Generally that's reasonable, but we have too much code with it
 RSpec/IndexedLet:
-  Enabled: false
-
-FactoryBot/FactoryAssociationWithStrategy:
   Enabled: false
 
 # Defaults are "is" and "has", but "has" usually has different meaning. Keeping only "is"
