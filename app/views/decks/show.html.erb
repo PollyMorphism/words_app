@@ -8,11 +8,13 @@
     </div>
     <div class="flex">
       <%= link_to "Add card", new_card_path(deck_id: @deck.id), class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
-      <%= link_to "Add deck", new_deck_path, class: "rounded-lg ml-2 py-3 px-5 bg-blue-600 text-white block font-medium" %>
+      <%= link_to "Add deck", new_deck_path(parent_id: @deck.id), class: "rounded-lg ml-2 py-3 px-5 bg-blue-600 text-white block font-medium" %>
       <%= link_to "Edit", edit_deck_path(@deck), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
       <%= button_to "Delete", deck_path(@deck), method: :delete, class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
     </div>
   </div>
+
+  <%= render @decks%>
 
   <%= render "cards/card_list" %>
 </div>

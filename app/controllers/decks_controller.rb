@@ -5,11 +5,12 @@ class DecksController < ApplicationController
   before_action :set_deck, only: %i[edit show update destroy]
 
   def index
-    @decks = current_user.decks
+    @decks = current_user.decks.roots
   end
 
   def show
     @cards = @deck.cards
+    @decks = @deck.children
   end
 
   def new
@@ -60,6 +61,6 @@ class DecksController < ApplicationController
   end
 
   def deck_params
-    params.require(:deck).permit(:name)
+    params.require(:deck).permit(:name, :parent_id)
   end
 end
