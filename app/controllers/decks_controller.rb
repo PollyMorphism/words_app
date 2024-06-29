@@ -2,7 +2,7 @@
 
 class DecksController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_deck, only: %i[edit update destroy]
+  before_action :set_deck, only: %i[edit show update destroy]
 
   def index
     @decks = current_user.decks
@@ -10,6 +10,10 @@ class DecksController < ApplicationController
 
   def new
     @deck = Deck.new
+  end
+
+  def show
+    @cards = @deck.cards
   end
 
   def edit; end

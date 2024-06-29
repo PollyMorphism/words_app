@@ -9,17 +9,18 @@ class CardsController < ApplicationController
   end
 
   def new
-    @card = Card.new
+    @deck = Deck.find(params[:deck_id]) if params[:deck_id]
+    @card = current_user.cards.build
   end
 
   def edit; end
 
   def create
-    @card = current_user.cards.new(card_params)
+    @card = current_user.cards.build(card_params)
 
     respond_to do |format|
       if @card.save
-        format.html { redirect_to cards_url, notice: t("cards.create") }
+        format.html { redirect_back fallback_location: cards_url, notice: t("cards.create") }
         format.json { render :show, status: :created, location: @card }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -56,6 +57,6 @@ class CardsController < ApplicationController
   end
 
   def card_params
-    params.require(:card).permit(:front, :back)
+    params.require(:card).permit(:front, :back, :deck_id)
   end
 end

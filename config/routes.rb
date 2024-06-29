@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   root "home#index"
 
-  resources :decks, except: :show
+  resources :decks
   resources :cards, except: :show
 
   resource :profile, only: :show

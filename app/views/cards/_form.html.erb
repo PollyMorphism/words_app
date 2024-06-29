@@ -19,8 +19,17 @@
     <%= form.text_field :back, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
+  <div>
+    <% if deck %>
+      <%= form.hidden_field :deck_id, value: deck.id %>
+    <% else %>
+      <%= form.label :deck_id, "Select Deck" %>
+      <%= form.collection_select :deck_id, Deck.all, :id, :name, {}, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <% end %>
+  </div>
+
   <div class="inline">
-    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
-    <%= link_to "Cancel", cards_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer my-5" %>
+    <%= link_to "Cancel", deck ? deck_path(deck) : cards_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
   </div>
 <% end %>

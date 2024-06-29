@@ -8,6 +8,7 @@
 
 
     <div class="flex">
+      <%= link_to "Show", deck_path(deck), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
       <%= link_to "Edit", edit_deck_path(deck), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
       <%= button_to "Delete", deck_path(deck), method: :delete, class: "rounded-lg py-3 px-5 ml-2 bg-gray-100 inline-block font-medium" %>
     </div>

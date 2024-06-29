@@ -1,12 +1,20 @@
-<div class="mx-auto md:w-2/3 w-full flex">
-  <div class="mx-auto">
-    <%= render @deck %>
-
-    <%= link_to "Edit this deck", edit_deck_path(@deck), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <div class="inline-block ml-2">
-      <%= button_to "Destroy this deck", deck_path(@deck), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+<div class="w-full">
+  <div class="flex justify-between items-center">
+    <div class= "flex">
+      <%= link_to "Back", decks_path, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium mr-5" %>
+      <h1 class="font-bold text-4xl">
+        <%= @deck.name %>
+      </h1>
     </div>
-    <%= link_to "Back to decks", decks_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <div class="flex">
+      <%= link_to "Add card", new_card_path(deck_id: @deck.id), class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+      <%= link_to "Add deck", new_deck_path, class: "rounded-lg ml-2 py-3 px-5 bg-blue-600 text-white block font-medium" %>
+      <%= link_to "Edit", edit_deck_path(@deck), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+      <%= button_to "Delete", deck_path(@deck), method: :delete, class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    </div>
+  </div>
+
+  <div id="cards" class="min-w-full mt-10">
+    <%= render @cards %>
   </div>
 </div>
-  
