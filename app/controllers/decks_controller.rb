@@ -15,7 +15,7 @@ class DecksController < ApplicationController
   end
 
   def new
-    @deck = Deck.new
+    @deck = Deck.new(parent_id: params[:parent_id])
   end
 
   def edit; end
