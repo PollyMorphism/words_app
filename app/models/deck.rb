@@ -10,6 +10,6 @@ class Deck < ApplicationRecord
   validates_with AncestryValidator, unless: -> { parent_id.blank? }
 
   def breadcrumbs
-    ancestors.reverse
+    parent&.self_and_ancestors&.reverse
   end
 end

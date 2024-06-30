@@ -11,14 +11,17 @@ class DecksController < ApplicationController
   def show
     @cards = @deck.cards
     @decks = @deck.children
-    @path  = @deck.breadcrumbs
+    set_path
   end
 
   def new
     @deck = Deck.new(parent_id: params[:parent_id])
+    set_path
   end
 
-  def edit; end
+  def edit
+    set_path
+  end
 
   def create
     @deck = current_user.decks.new(deck_params)
@@ -47,10 +50,11 @@ class DecksController < ApplicationController
   end
 
   def destroy
+    redirect_path = @deck.parent ? deck_path(@deck.parent) : decks_path
     @deck.destroy!
 
     respond_to do |format|
-      format.html { redirect_to decks_url, notice: t("decks.delete") }
+      format.html { redirect_to redirect_path, notice: t("decks.delete") }
       format.json { head :no_content }
     end
   end
@@ -59,6 +63,10 @@ class DecksController < ApplicationController
 
   def set_deck
     @deck = Deck.find(params[:id])
+  end
+
+  def set_path
+    @path = @deck.breadcrumbs
   end
 
   def deck_params
