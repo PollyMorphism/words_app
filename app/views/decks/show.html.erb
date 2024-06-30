@@ -8,10 +8,7 @@
       </h1>
     </div>
     <div class="flex">
-      <%= link_to "Add card", new_card_path(deck_id: @deck.id), class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
       <%= link_to "Add deck", new_deck_path(parent_id: @deck.id), class: "rounded-lg ml-2 py-3 px-5 bg-blue-600 text-white block font-medium" %>
-      <%= link_to "Edit", edit_deck_path(@deck), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-      <%= button_to "Delete", deck_path(@deck), method: :delete, class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
     </div>
   </div>
 
@@ -24,8 +21,13 @@
 
   <% if @cards.any? %>
     <div id="cards" class="mt-10">
-      <h3 class="text-lg font-semibold mb-3"> Cards:</h3>
+      <div class="flex justify-between items-center mb-5">
+        <h3 class="text-lg font-semibold mb-3"> Cards:</h3>
+        <%= link_to 'Add Card', new_card_path(deck_id: @deck.id), class: "py-3 px-4 text-blue-600 hover:text-blue-800 font-medium rounded" %>
+      </div>
       <%= render @cards%>
     </div>
+  <% else %>
+    <%= render "shared/no_cards", deck: @deck%>
   <% end%>
 </div>

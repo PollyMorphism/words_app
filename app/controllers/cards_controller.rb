@@ -32,7 +32,7 @@ class CardsController < ApplicationController
   def update
     respond_to do |format|
       if @card.update(card_params)
-        format.html { redirect_to cards_url, notice: t("cards.update") }
+        format.html { redirect_to params[:previous_request] || cards_path, notice: t("cards.update") }
         format.json { render :show, status: :ok, location: @card }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -45,7 +45,7 @@ class CardsController < ApplicationController
     @card.destroy!
 
     respond_to do |format|
-      format.html { redirect_to cards_url, notice: t("cards.delete") }
+      format.html { redirect_back fallback_location: cards_path, notice: t("cards.delete") }
       format.json { head :no_content }
     end
   end

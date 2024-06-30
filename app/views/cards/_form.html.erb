@@ -9,6 +9,8 @@
     </div>
   <% end %>
 
+  <%= hidden_field_tag :previous_request, request.referer %>
+
   <div class="my-5">
     <%= form.label :front %>
     <%= form.text_field :front, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>

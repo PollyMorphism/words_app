@@ -1,0 +1,5 @@
+<div class="text-center text-gray-600 py-4 mt-20">
+  <p>No cards found<%= deck ? " in this deck" : "" %>.</p>
+  <p class="mb-4">You can add new cards using the button below.</p>
+  <%= link_to 'Add Card', new_card_path(deck_id: deck&.id), class: "py-3 px-4 text-blue-600 hover:text-blue-800 font-medium rounded" %>
+</div>

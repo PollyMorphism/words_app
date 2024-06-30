@@ -4,7 +4,11 @@
     <%= link_to "New card", new_card_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
   </div>
 
-  <div id="cards" class="min-w-full mt-10">
-    <%= render @cards %>
-  </div>
+  <% if @cards.any? %>
+    <div id="cards" class="min-w-full mt-10">
+      <%= render @cards %>
+    </div>
+  <% else %>
+    <%= render "shared/no_cards", deck: nil%>
+  <% end %>
 </div>
