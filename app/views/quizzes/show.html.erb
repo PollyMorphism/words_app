@@ -2,15 +2,15 @@
   <%= @card.deck.name %>
 </div>
 
-<div id="card-container" class="flex justify-center items-center mt-20 cursor-pointer">
-  <div class="text-2xl">
-    <p id="card-front"> <%= @card.front %> </p>
-    <p id="card-back" style="display: none;"> <%= @card.back %> </p>
+<div data-controller="quiz">
+  <div class="flex justify-center items-center mt-20 cursor-pointer border rounded-lg" data-quiz-target="cardContainer">
+    <div class="flex text-2xl h-[200px] items-center">
+      <p data-quiz-target="cardFront"> <%= @card.front %> </p>
+      <p data-quiz-target="cardBack" style="display: none;"> <%= @card.back %> </p>
+    </div>
+  </div>
+
+  <div data-quiz-target="actionButton" style="display: none;" class="text-center">
+    <%= link_to "Next card", quiz_path, class: "rounded-lg py-3 px-5 mt-10 bg-blue-600 text-white inline-block font-medium" %>
   </div>
 </div>
-
-<div id="next-card" style="display: none;" class="mt-10 text-center">
-  <%= link_to "Next card", quiz_path, data: { turbo: false }, class: "rounded-lg py-3 px-5 mt-10 bg-blue-600 text-white inline-block font-medium" %>
-</div>
-
-
