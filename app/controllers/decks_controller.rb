@@ -10,6 +10,7 @@ class DecksController < ApplicationController
 
   def show
     @cards = @deck.cards
+    @cards_for_review = @cards.for_review.count
     @decks = @deck.children
     set_path
   end

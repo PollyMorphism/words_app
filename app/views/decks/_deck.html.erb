@@ -1,12 +1,18 @@
 <div id="<%= dom_id(deck) %>">
   <div class="flex justify-between items-center">
-    <div class="flex">
-      <%= link_to deck.name, deck_path(deck), class: "my-2 ml-10 font-semibold text-blue-600 hover:text-blue-800" %>
+    <div class="flex my-2 ml-10">
+      <%= link_to deck.name, deck_path(deck), class: "font-semibold text-blue-600 hover:text-blue-800" %>
     </div>
 
     <div class="flex">
-      <%= link_to "Edit", edit_deck_path(deck), class: "py-3 ml-2 px-2 text-blue-600 hover:text-blue-800 font-medium" %>
-      <%= button_to "Delete", deck_path(deck), method: :delete, class: "py-3 px-2 ml-2 text-red-600 hover:text-red-800 font-medium border-none bg-transparent", form: { class: "inline-block" } %>
+      <div class="flex text-sm text-gray-600 py-3 px-10">
+        <p>Cards: <%= deck.cards.count %></p>
+        <p class="ml-5">Review: <%= deck.cards.for_review.count%></p>
+      </div>
+      <div class="ml-10">
+        <%= link_to "Edit", edit_deck_path(deck), class: "py-3 ml-2 px-2 text-blue-600 hover:text-blue-800 font-medium" %>
+        <%= button_to "Delete", deck_path(deck), method: :delete, class: "py-3 px-2 ml-2 text-red-600 hover:text-red-800 font-medium border-none bg-transparent", form: { class: "inline-block" } %>
+      </div>
     </div>
   </div>
 

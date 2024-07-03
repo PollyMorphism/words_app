@@ -2,15 +2,22 @@
   <%= render "shared/breadcrumbs", path: @path, deck: @deck%>
 
   <div class="flex justify-between items-center">
-    <div class= "flex">
+    <div class= "flex-column">
       <h1 class="font-bold text-4xl">
         <%= @deck.name %>
       </h1>
     </div>
     <div class="flex">
       <%= link_to "Add deck", new_deck_path(parent_id: @deck.id), class: "rounded-lg ml-2 py-3 px-5 bg-blue-600 text-white block font-medium" %>
-      <%= button_to "Quiz", quiz_path(deck_id: @deck.id), method: :post, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium ml-2" %>
+      <% if @cards_for_review > 0%>
+        <%= button_to "Quiz: #{pluralize(@cards_for_review, 'card')}", quiz_path(deck_id: @deck.id), method: :post, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium ml-2" %>
+      <% end %>
     </div>
+  </div>
+
+  <div class="text-sm text-gray-600 mt-5">
+    <p>Cards number: <%= @cards.count %> </p>
+    <p>Cards for review: <%= @cards_for_review %> </p>
   </div>
 
   <% if @decks.any? %>
