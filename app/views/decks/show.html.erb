@@ -36,6 +36,7 @@
         <%= link_to 'Add Card', new_card_path(deck_id: @deck.id), class: "py-3 px-4 text-blue-600 hover:text-blue-800 font-medium rounded" %>
       </div>
       <%= render @cards%>
+      <%= paginate @cards %>
     </div>
   <% else %>
     <%= render "shared/no_cards", deck: @deck%>

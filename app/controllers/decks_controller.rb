@@ -9,7 +9,7 @@ class DecksController < ApplicationController
   end
 
   def show
-    @cards = @deck.cards
+    @cards = @deck.cards.page(params[:page])
     @cards_for_review = @cards.for_review.count
     @decks = @deck.children
     set_breadcrumbs
