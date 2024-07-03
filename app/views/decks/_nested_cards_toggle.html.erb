@@ -1,9 +1,16 @@
-<form id="nested-cards-form" action="<%= deck_path(deck) %>" method="get">
-  <div class="flex items-center">
-    <label class="inline-flex items-center cursor-pointer">
-      <input type="checkbox" name="show_nested_cards" value="true" class="sr-only peer" <%= 'checked' if show_nested_cards %> onchange="document.getElementById('nested-cards-form').submit()" />
-      <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
-      <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">Nested cards</span>
-    </label>
+<% if deck.children.any? %>
+  <div data-controller="cards" class="mb-5">
+    <%= form_with url: deck_path(deck), method: :get, data: { cards_target: "toggleForm" } do %>
+      <div class="flex items-center">
+        <label class="inline-flex items-center cursor-pointer">
+          <input data-action="click->cards#toggleCards" type="checkbox" name="show_nested_cards" value="true" class="sr-only peer" <%= 'checked' if show_nested_cards %>/>
+          <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+          <span class="ms-3 text-sm font-medium text-gray-900">Nested cards</span>
+        </label>
+      </div>
+    <% end %>
   </div>
-</form>
+<% end %>
+
+
+

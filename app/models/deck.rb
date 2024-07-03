@@ -12,4 +12,12 @@ class Deck < ApplicationRecord
   def breadcrumbs
     parent&.self_and_ancestors&.reverse
   end
+
+  def get_cards(nested_cards: false)
+    if nested_cards
+      Card.where(deck_id: self_and_descendant_ids)
+    else
+      cards
+    end
+  end
 end
