@@ -7,6 +7,7 @@
   <% if @cards.any? %>
     <div id="cards" class="min-w-full mt-10">
       <%= render @cards %>
+      <%= paginate @cards %>
     </div>
   <% else %>
     <%= render "shared/no_cards", deck: nil%>

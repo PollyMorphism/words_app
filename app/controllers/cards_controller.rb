@@ -5,7 +5,7 @@ class CardsController < ApplicationController
   before_action :set_card, only: %i[edit update destroy]
 
   def index
-    @cards = current_user.cards
+    @cards = current_user.cards.page(params[:page])
   end
 
   def new
