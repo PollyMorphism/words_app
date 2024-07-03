@@ -12,16 +12,16 @@ class DecksController < ApplicationController
     @cards = @deck.cards
     @cards_for_review = @cards.for_review.count
     @decks = @deck.children
-    set_path
+    set_breadcrumbs
   end
 
   def new
     @deck = Deck.new(parent_id: params[:parent_id])
-    set_path
+    set_breadcrumbs
   end
 
   def edit
-    set_path
+    set_breadcrumbs
   end
 
   def create
@@ -36,17 +36,16 @@ class DecksController < ApplicationController
 
   def update
     if @deck.update(deck_params)
-      redirect_to decks_url, notice: t("decks.update")
+      redirect_to redirect_path(@deck), notice: t("decks.update")
     else
       render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
-    redirect_path = @deck.parent ? deck_path(@deck.parent) : decks_path
     @deck.destroy!
 
-    redirect_to redirect_path, notice: t("decks.delete")
+    redirect_to redirect_path(@deck), notice: t("decks.delete")
   end
 
   private
@@ -55,8 +54,12 @@ class DecksController < ApplicationController
     @deck = Deck.find(params[:id])
   end
 
-  def set_path
-    @path = @deck.breadcrumbs
+  def set_breadcrumbs
+    @breadcrumbs = @deck.breadcrumbs
+  end
+
+  def redirect_path(deck)
+    deck.parent ? deck_path(deck.parent) : decks_path
   end
 
   def deck_params

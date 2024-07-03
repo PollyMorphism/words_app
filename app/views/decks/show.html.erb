@@ -1,5 +1,5 @@
 <div class="w-full">
-  <%= render "shared/breadcrumbs", path: @path, deck: @deck%>
+  <%= render "shared/breadcrumbs", breadcrumbs: @breadcrumbs, deck: @deck%>
 
   <div class="flex justify-between items-center">
     <div class= "flex-column">
@@ -15,10 +15,12 @@
     </div>
   </div>
 
-  <div class="text-sm text-gray-600 mt-5">
-    <p>Cards number: <%= @cards.count %> </p>
-    <p>Cards for review: <%= @cards_for_review %> </p>
+  <% if @cards.any? %>
+    <div class="text-sm text-gray-600 mt-5">
+      <p>Cards number: <%= @cards.count %> </p>
+      <p>Cards for review: <%= @cards_for_review %> </p>
   </div>
+  <% end %>
 
   <% if @decks.any? %>
     <div id="decks" class="mt-10">
