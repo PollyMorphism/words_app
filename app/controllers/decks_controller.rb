@@ -27,26 +27,18 @@ class DecksController < ApplicationController
   def create
     @deck = current_user.decks.new(deck_params)
 
-    respond_to do |format|
-      if @deck.save
-        format.html { redirect_to deck_path(@deck), notice: t("decks.create") }
-        format.json { render :show, status: :created, location: @deck }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @deck.errors, status: :unprocessable_entity }
-      end
+    if @deck.save
+      redirect_to deck_path(@deck), notice: t("decks.create")
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
   def update
-    respond_to do |format|
-      if @deck.update(deck_params)
-        format.html { redirect_to decks_url, notice: t("decks.update") }
-        format.json { render :show, status: :ok, location: @deck }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @deck.errors, status: :unprocessable_entity }
-      end
+    if @deck.update(deck_params)
+      redirect_to decks_url, notice: t("decks.update")
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -54,10 +46,7 @@ class DecksController < ApplicationController
     redirect_path = @deck.parent ? deck_path(@deck.parent) : decks_path
     @deck.destroy!
 
-    respond_to do |format|
-      format.html { redirect_to redirect_path, notice: t("decks.delete") }
-      format.json { head :no_content }
-    end
+    redirect_to redirect_path, notice: t("decks.delete")
   end
 
   private

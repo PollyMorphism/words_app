@@ -7,3 +7,5 @@ en:
     create: "Card was successfully created."
     update: "Card was successfully updated."
     delete: "Card was successfully destroyed."
+  quiz:
+    completed: "Quiz has been completed!"

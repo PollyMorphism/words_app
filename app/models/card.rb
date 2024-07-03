@@ -10,7 +10,7 @@ class Card < ApplicationRecord
   default_scope { order(created_at: :desc) }
   scope :for_review, -> { where(review_at: ..DateTime.current.end_of_day) }
 
-  def review(rate)
-    SuperMemoService.call(self, rate)
+  def review!(quality)
+    SuperMemoService.call(self, quality)
   end
 end
