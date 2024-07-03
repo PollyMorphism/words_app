@@ -16,7 +16,7 @@ class QuizzesController < ApplicationController
   def create
     @deck = Deck.find(params[:deck_id])
     session[:deck_id] = @deck.id
-    session[:card_ids] = @deck.cards.ids
+    session[:card_ids] = @deck.cards.for_review.ids
     session[:current_card_index] = 0
 
     redirect_to action: :show

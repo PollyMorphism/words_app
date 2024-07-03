@@ -7,6 +7,7 @@ class Card < ApplicationRecord
   validates :front, presence: true, length: { in: 3..255 }
   validates :back, presence: true, length: { in: 3..255 }
 
+  default_scope { order(created_at: :desc) }
   scope :for_review, -> { where(review_at: ..DateTime.current.end_of_day) }
 
   def review(rate)
