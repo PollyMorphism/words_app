@@ -9,7 +9,13 @@ class DecksController < ApplicationController
   end
 
   def show
-    @cards = @deck.cards.page(params[:page])
+    @show_nested_cards = params[:show_nested_cards] == "true"
+    @cards = if @show_nested_cards
+               Card.where(deck_id: [@deck.id] + @deck.descendant_ids).page(params[:page])
+             else
+               @deck.cards.page(params[:page])
+             end
+
     @cards_for_review = @cards.for_review.count
     @decks = @deck.children
     set_breadcrumbs
