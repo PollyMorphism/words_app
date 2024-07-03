@@ -2,21 +2,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["cardContainer", "cardFront", "cardBack", "actions"]
-
-  connect() {
-    if (this.hasCardContainerTarget) {
-      this.cardContainerTarget.addEventListener("click", this.flipCard.bind(this));
-    } else {
-      console.error("Card container target is missing");
-    }
-  }
-
-  disconnect() {
-    if (this.hasCardContainerTarget) {
-      this.cardContainerTarget.removeEventListener("click", this.flipCard.bind(this));
-    }
-  }
+  static targets = ["cardFront", "cardBack", "actions"]
 
   flipCard() {
     if (this.cardFrontTarget.style.display === "none") {

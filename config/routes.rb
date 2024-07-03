@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   resources :decks
   resources :cards, except: :show
-  resource :quiz, only: [:create, :show]
+  resource :quiz, only: [:show, :create, :update]
 
   resource :profile, only: :show
 end
