@@ -2,7 +2,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["cardContainer", "cardFront", "cardBack", "actionButton"]
+  static targets = ["cardContainer", "cardFront", "cardBack", "actions"]
 
   connect() {
     if (this.hasCardContainerTarget) {
@@ -22,11 +22,11 @@ export default class extends Controller {
     if (this.cardFrontTarget.style.display === "none") {
       this.cardFrontTarget.style.display = "block";
       this.cardBackTarget.style.display = "none";
-      this.actionButtonTarget.style.display = "none";
+      this.actionsTarget.style.display = "none";
     } else {
       this.cardFrontTarget.style.display = "none";
       this.cardBackTarget.style.display = "block";
-      this.actionButtonTarget.style.display = "block";
+      this.actionsTarget.style.display = "";
     }
   }
 }

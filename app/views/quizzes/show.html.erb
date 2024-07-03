@@ -10,7 +10,34 @@
     </div>
   </div>
 
-  <div data-quiz-target="actionButton" style="display: none;" class="text-center">
-    <%= link_to "Next card", quiz_path, class: "rounded-lg py-3 px-5 mt-10 bg-blue-600 text-white inline-block font-medium" %>
+  <div data-quiz-target="actions" style="display: none;" class=" flex justify-center space-x-10 mt-5">
+    <!-- Incorrect Responses -->
+    <div class="mb-4">
+      <p class="text-center text-sm font-medium text-gray-700 mb-2">Incorrect</p>
+      <div class="flex justify-center space-x-2">
+        <%= link_to "Blackout", quiz_path(quality: 0), class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium" %>
+        <%= link_to "Remembered", quiz_path(quality: 1), class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium" %>
+        <%= link_to "Almost", quiz_path(quality: 2), class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium" %>
+      </div>
+    </div>
+
+    <!-- Correct Responses -->
+    <div class="mb-6">
+      <p class="text-center text-sm font-medium text-gray-700 mb-2">Correct</p>
+      <div class="flex justify-center space-x-2">
+        <%= link_to "Difficult", quiz_path(quality: 3), class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium" %>
+        <%= link_to "Hesitant", quiz_path(quality: 4), class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium" %>
+        <%= link_to "Perfect", quiz_path(quality: 5), class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium" %>
+      </div>
+    </div>
+  </div>
+
+  <div data-quiz-target="actionDescription" style="display: none;">
+    Perfect - perfect response
+    Hesitant - correct response after a hesitation
+    Difficult - correct response recalled with serious difficulty
+    Almost - incorrect response; where the correct one seemed easy to recall
+    Remembered - incorrect response; the correct one remembered
+    Blackout - complete blackout.
   </div>
 </div>

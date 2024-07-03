@@ -6,6 +6,8 @@ class QuizzesController < ApplicationController
   def show
     @card = Card.find(session[:card_ids][session[:current_card_index]])
 
+    #@card.review(params[:quality])
+
     session[:current_card_index] += 1
   rescue ActiveRecord::RecordNotFound
     session.delete(:card_ids)
