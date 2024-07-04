@@ -1,7 +1,7 @@
 <div id="<%= dom_id(card) %>">
   <div class="flex justify-between items-center">
-    <div class="my-2 ml-10"> <%= card.front %> </div>
-    <div> <%= card.back %> </div>
+    <div class="my-2 ml-10 w-1/2"> <%= card.front %> </div>
+    <div class="w-1/2"> <%= card.back %> </div>
 
     <div class="flex">
       <%= link_to "Edit", edit_card_path(card), class: "py-3 ml-2 px-2 text-blue-600 hover:text-blue-800 font-medium" %>

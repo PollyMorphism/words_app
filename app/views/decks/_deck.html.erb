@@ -1,18 +1,17 @@
 <div id="<%= dom_id(deck) %>">
-  <div class="flex justify-between items-center">
-    <div class="flex my-2 ml-10">
+  <div class="flex justify-between items-center flex-wrap">
+    <div class="flex my-2 ml-10 flex-1">
       <%= link_to deck.name, deck_path(deck), class: "font-semibold text-blue-600 hover:text-blue-800" %>
     </div>
 
-    <div class="flex">
-      <div class="flex text-sm text-gray-600 py-3 px-10">
-        <p>Cards: <%= cards_count(deck) %></p>
-        <p class="ml-5">Review: <%= review_count(deck) %></p>
-      </div>
-      <div class="ml-10">
-        <%= link_to "Edit", edit_deck_path(deck), class: "py-3 ml-2 px-2 text-blue-600 hover:text-blue-800 font-medium" %>
-        <%= button_to "Delete", deck_path(deck), method: :delete, class: "py-3 px-2 ml-2 text-red-600 hover:text-red-800 font-medium border-none bg-transparent", form: { class: "inline-block" } %>
-      </div>
+    <div class="flex text-sm text-gray-600 py-3">
+      <p class="w-24">Cards: <%= cards_count(deck) %></p>
+      <p class="w-24">Review: <%= review_count(deck) %></p>
+    </div>
+
+    <div class="flex ml-10 space-x-2">
+      <%= link_to "Edit", edit_deck_path(deck), class: "py-3 px-2 text-blue-600 hover:text-blue-800 font-medium" %>
+      <%= button_to "Delete", deck_path(deck), method: :delete, class: "py-3 px-2 text-red-600 hover:text-red-800 font-medium border-none bg-transparent", form: { class: "inline-block" } %>
     </div>
   </div>
   <hr>

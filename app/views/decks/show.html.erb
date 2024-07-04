@@ -37,8 +37,7 @@
       </div>
 
       <%= render "nested_cards_toggle", deck: @deck, show_nested_cards: @show_nested_cards%>
-      <%= render @display_cards%>
-      <%= paginate @display_cards %>
+      <%= render "cards/cards_list", cards: @display_cards %>
     </div>
   <% else %>
     <%= render "shared/no_cards", deck: @deck%>
