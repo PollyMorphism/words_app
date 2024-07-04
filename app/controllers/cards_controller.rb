@@ -9,7 +9,7 @@ class CardsController < ApplicationController
   end
 
   def new
-    @deck = Deck.find(params[:deck_id]) if params[:deck_id]
+    @deck = current_user.decks.find(params[:deck_id]) if params[:deck_id]
     @card = current_user.cards.build
   end
 
@@ -42,7 +42,7 @@ class CardsController < ApplicationController
   private
 
   def set_card
-    @card = Card.find(params[:id])
+    @card = current_user.cards.find(params[:id])
   end
 
   def card_params

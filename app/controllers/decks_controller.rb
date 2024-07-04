@@ -54,7 +54,7 @@ class DecksController < ApplicationController
   private
 
   def set_deck
-    @deck = Deck.find(params[:id])
+    @deck = current_user.decks.find(params[:id])
   end
 
   def set_breadcrumbs

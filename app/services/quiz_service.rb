@@ -1,18 +1,19 @@
 class QuizService
-  attr_accessor :session
+  attr_accessor :user, :session
 
-  def initialize(session)
+  def initialize(user, session)
+    @user = user
     @session = session
   end
 
   def create_quiz_session(deck, show_nested_cards)
     session[:deck_id] = deck.id
-    session[:card_ids] = deck.get_cards(nested_cards: show_nested_cards).ids
+    session[:card_ids] = deck.get_cards(nested_cards: show_nested_cards).for_review.ids
     session[:current_card_index] = 0
   end
 
   def current_card
-    Card.find(session[:card_ids][session[:current_card_index]])
+    user.cards.find(session[:card_ids][session[:current_card_index]])
   end
 
   def set_next_card

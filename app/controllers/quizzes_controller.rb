@@ -14,14 +14,14 @@ class QuizzesController < ApplicationController
 
   def create
     show_nested_cards = ActiveModel::Type::Boolean.new.cast(params[:show_nested_cards])
-    @deck = Deck.find(params[:deck_id])
+    @deck = current_user.decks.find(params[:deck_id])
     @quiz.create_quiz_session(@deck, show_nested_cards)
 
     redirect_to action: :show
   end
 
   def update
-    card = Card.find(params[:id])
+    card = current_user.cards.find(params[:id])
     card.review!(params[:quality].to_i)
     @quiz.set_next_card
 
@@ -31,6 +31,6 @@ class QuizzesController < ApplicationController
   private
 
   def set_quiz
-    @quiz = QuizService.new(session)
+    @quiz = QuizService.new(current_user, session)
   end
 end
