@@ -9,16 +9,16 @@
     </div>
     <div class="flex">
       <%= link_to "Add Deck", new_deck_path(parent_id: @deck.id), class: "rounded-lg ml-2 py-3 px-5 bg-blue-600 text-white block font-medium" %>
-      <% if @cards_for_review > 0%>
-        <%= button_to "Quiz: #{pluralize(@cards_for_review, 'card')}", quiz_path(deck_id: @deck.id, show_nested_cards: @show_nested_cards), method: :post, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium ml-2" %>
+      <% if review_count(@deck, show_nested_cards: @show_nested_cards) > 0%>
+        <%= button_to "Quiz: #{pluralize(review_count(@deck, show_nested_cards: @show_nested_cards), 'card')}", quiz_path(deck_id: @deck.id, show_nested_cards: @show_nested_cards), method: :post, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium ml-2" %>
       <% end %>
     </div>
   </div>
 
   <% if @cards.any? %>
     <div class="text-sm text-gray-600 mt-5">
-      <p>Cards number: <%= @cards.count %> </p>
-      <p>Cards for review: <%= @cards_for_review %> </p>
+      <p>Cards number: <%= cards_count(@deck, show_nested_cards: @show_nested_cards) %> </p>
+      <p>Cards for review: <%= review_count(@deck, show_nested_cards: @show_nested_cards)%> </p>
   </div>
   <% end %>
 
@@ -29,7 +29,7 @@
     </div>
   <% end %>
 
-  <% if @cards.any? %>
+  <% if @display_cards.any? %>
     <div id="cards" class="mt-10">
       <div class="flex justify-between items-center mb-1">
         <h3 class="text-lg font-semibold mb-3"> Cards:</h3>
@@ -37,8 +37,8 @@
       </div>
 
       <%= render "nested_cards_toggle", deck: @deck, show_nested_cards: @show_nested_cards%>
-      <%= render @cards%>
-      <%= paginate @cards %>
+      <%= render @display_cards%>
+      <%= paginate @display_cards %>
     </div>
   <% else %>
     <%= render "shared/no_cards", deck: @deck%>
