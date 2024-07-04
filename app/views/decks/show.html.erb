@@ -9,16 +9,16 @@
     </div>
     <div class="flex">
       <%= link_to "Add Deck", new_deck_path(parent_id: @deck.id), class: "rounded-lg ml-2 py-3 px-5 bg-blue-600 text-white block font-medium" %>
-      <% if review_count(@deck, show_nested_cards: @show_nested_cards) > 0%>
-        <%= button_to "Quiz: #{pluralize(review_count(@deck, show_nested_cards: @show_nested_cards), 'card')}", quiz_path(deck_id: @deck.id, show_nested_cards: @show_nested_cards), method: :post, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium ml-2" %>
+      <% if @cards_for_review.count > 0%>
+        <%= button_to "Quiz: #{pluralize(@cards_for_review.count, 'card')}", quiz_path(deck_id: @deck.id, show_nested_cards: @show_nested_cards), method: :post, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium ml-2" %>
       <% end %>
     </div>
   </div>
 
   <% if @cards.any? %>
     <div class="text-sm text-gray-600 mt-5">
-      <p>Cards number: <%= cards_count(@deck, show_nested_cards: @show_nested_cards) %> </p>
-      <p>Cards for review: <%= review_count(@deck, show_nested_cards: @show_nested_cards)%> </p>
+      <p>Cards number: <%= @cards.count %> </p>
+      <p>Cards for review: <%= @cards_for_review.count%> </p>
   </div>
   <% end %>
 
