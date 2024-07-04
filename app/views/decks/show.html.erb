@@ -8,7 +8,7 @@
       </h1>
     </div>
     <div class="flex">
-      <%= link_to "Add deck", new_deck_path(parent_id: @deck.id), class: "rounded-lg ml-2 py-3 px-5 bg-blue-600 text-white block font-medium" %>
+      <%= link_to "Add Deck", new_deck_path(parent_id: @deck.id), class: "rounded-lg ml-2 py-3 px-5 bg-blue-600 text-white block font-medium" %>
       <% if @cards_for_review > 0%>
         <%= button_to "Quiz: #{pluralize(@cards_for_review, 'card')}", quiz_path(deck_id: @deck.id, show_nested_cards: @show_nested_cards), method: :post, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium ml-2" %>
       <% end %>
@@ -33,7 +33,7 @@
     <div id="cards" class="mt-10">
       <div class="flex justify-between items-center mb-1">
         <h3 class="text-lg font-semibold mb-3"> Cards:</h3>
-        <%= link_to 'Add Card', new_card_path(deck_id: @deck.id), class: "py-3 px-4 text-blue-600 hover:text-blue-800 font-medium rounded" %>
+        <%= link_to 'Add Card', new_card_path(deck_id: @deck.id), class: "rounded-lg ml-2 py-3 px-5 bg-blue-600 text-white block font-medium" %>
       </div>
 
       <%= render "nested_cards_toggle", deck: @deck, show_nested_cards: @show_nested_cards%>
