@@ -14,8 +14,9 @@ class QuizzesController < ApplicationController
   end
 
   def create
+    show_nested_cards = ActiveModel::Type::Boolean.new.cast(params[:show_nested_cards])
     @deck = Deck.find(params[:deck_id])
-    set_quiz_session(@deck)
+    set_quiz_session(@deck, show_nested_cards)
 
     redirect_to action: :show
   end
@@ -29,9 +30,9 @@ class QuizzesController < ApplicationController
 
   private
 
-  def set_quiz_session(deck)
+  def set_quiz_session(deck, show_nested_cards)
     session[:deck_id] = deck.id
-    session[:card_ids] = deck.cards.for_review.ids
+    session[:card_ids] = deck.get_cards(nested_cards: show_nested_cards).ids
     session[:current_card_index] = 0
   end
 

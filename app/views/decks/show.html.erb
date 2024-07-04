@@ -10,7 +10,7 @@
     <div class="flex">
       <%= link_to "Add deck", new_deck_path(parent_id: @deck.id), class: "rounded-lg ml-2 py-3 px-5 bg-blue-600 text-white block font-medium" %>
       <% if @cards_for_review > 0%>
-        <%= button_to "Quiz: #{pluralize(@cards_for_review, 'card')}", quiz_path(deck_id: @deck.id), method: :post, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium ml-2" %>
+        <%= button_to "Quiz: #{pluralize(@cards_for_review, 'card')}", quiz_path(deck_id: @deck.id, show_nested_cards: @show_nested_cards), method: :post, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium ml-2" %>
       <% end %>
     </div>
   </div>
