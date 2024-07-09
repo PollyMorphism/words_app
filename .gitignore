@@ -35,3 +35,6 @@
 !/app/assets/builds/.keep
 
 .DS_Store
+
+/config/deploy.rb
+/config/nginx.conf
