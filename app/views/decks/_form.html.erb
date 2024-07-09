@@ -9,11 +9,14 @@
     </div>
   <% end %>
 
-  <%= form.hidden_field :parent_id %>
-
   <div class="my-5">
     <%= form.label :name %>
     <%= form.text_field :name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :parent_id, "Parent Deck" %>
+    <%= form.select :parent_id, options_for_select([["Root", nil]] + current_user.decks.pluck(:name, :id), selected: deck.parent_id), {}, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <div class="inline">
