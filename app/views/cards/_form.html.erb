@@ -26,7 +26,7 @@
       <%= form.hidden_field :deck_id, value: deck.id %>
     <% else %>
       <%= form.label :deck_id, "Select Deck" %>
-      <%= form.collection_select :deck_id, current_user.decks.all, :id, :name, {}, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+      <%= form.collection_select :deck_id, current_user.decks.all.order(:name), :id, :name, {}, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
     <% end %>
   </div>
 
