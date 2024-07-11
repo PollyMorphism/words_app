@@ -16,7 +16,7 @@
 
   <div class="my-5">
     <%= form.label :parent_id, "Parent Deck" %>
-    <%= form.select :parent_id, options_for_select([["Root", nil]] + current_user.decks.pluck(:name, :id), selected: deck.parent_id), {}, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.select :parent_id, options_for_select([["Root", nil]] + current_user.decks.pluck(:name, :id), selected: deck.parent_id), {}, { data: { controller: "slim" }} %>
   </div>
 
   <div class="inline">
