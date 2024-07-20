@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class QuizService
   attr_accessor :user, :session
 
