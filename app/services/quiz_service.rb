@@ -8,7 +8,7 @@ class QuizService
 
   def create_quiz_session(deck, show_nested_cards)
     session[:deck_id] = deck.id
-    session[:card_ids] = deck.get_cards(nested_cards: show_nested_cards).for_review.ids
+    session[:card_ids] = deck.get_cards(nested_cards: show_nested_cards).for_review.ids.shuffle
     session[:current_card_index] = 0
   end
 
